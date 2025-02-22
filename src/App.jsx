@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Brain, Timer as TimerIcon } from 'lucide-react';
-import { questions } from '././Data/questions';
+import { questions } from './Data/questions';
 import Timer from './Components/Timer';
 import QuizComplete from './Components/QuizComplete';
 import QuizHistory from './Components/QuizHistory';
@@ -140,8 +140,8 @@ function App() {
 
   if (quizState.isComplete) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-3 sm:p-4 md:p-6">
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
           <QuizComplete
             score={quizState.score}
             totalQuestions={questions.length}
@@ -159,28 +159,30 @@ function App() {
   const seconds = totalTimeRemaining % 60;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-3 sm:p-4 md:p-6">
       {showTimeUpModal && <TimeUpModal onRestart={resetQuiz} />}
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl">
-                <Brain className="w-8 h-8 text-white" />
+        <div className="bg-white/80 backdrop-blur-lg rounded-lg sm:rounded-xl md:rounded-2xl shadow-xl border border-white/20 p-4 sm:p-6 md:p-8">
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4 sm:gap-0">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="p-2 sm:p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg sm:rounded-xl">
+                <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 Interactive Quiz
               </h1>
             </div>
-            <div className={`flex items-center gap-3 px-4 py-2 rounded-lg border transition-colors duration-300 ${
+            {/* Timer Display */}
+            <div className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border transition-colors duration-300 ${
               totalTimeRemaining <= 300 
                 ? 'bg-red-50 border-red-100' 
                 : 'bg-blue-50 border-blue-100'
             }`}>
-              <TimerIcon className={`w-5 h-5 ${
+              <TimerIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${
                 totalTimeRemaining <= 300 ? 'text-red-500' : 'text-blue-500'
               }`} />
-              <span className={`text-lg font-semibold ${
+              <span className={`text-sm sm:text-base md:text-lg font-semibold ${
                 totalTimeRemaining <= 300 ? 'text-red-600' : 'text-blue-600'
               }`}>
                 {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
@@ -188,16 +190,18 @@ function App() {
             </div>
           </div>
 
-          <div className="mb-6">
+          {/* Progress Timer */}
+          <div className="mb-4 sm:mb-6">
             <Timer
               timeRemaining={quizState.timeRemaining}
               totalTime={TIME_PER_QUESTION}
             />
           </div>
 
-          <div className="mb-8">
+          {/* Question Section */}
+          <div className="mb-6 sm:mb-8">
             <div className="flex items-center gap-2 mb-2">
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+              <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm font-medium">
                 Question {quizState.currentQuestionIndex + 1} of {questions.length}
               </span>
               <div className="h-1 flex-1 bg-blue-100 rounded-full">
@@ -207,38 +211,42 @@ function App() {
                 />
               </div>
             </div>
-            <h2 className="text-2xl font-semibold mb-6 text-gray-800">{currentQuestion.question}</h2>
             
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
+              {currentQuestion.question}
+            </h2>
+            
+            {/* Answer Options */}
             {currentQuestion.type === 'multiple-choice' ? (
-              <div className="grid gap-3">
+              <div className="grid gap-2 sm:gap-3">
                 {currentQuestion.options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleMultipleChoiceAnswer(index)}
-                    className="group text-left p-4 rounded-xl border-2 border-gray-200 hover:border-transparent hover:ring-2 hover:ring-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-600 transition-all duration-300"
+                    className="group text-left p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-gray-200 hover:border-transparent hover:ring-2 hover:ring-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-600 transition-all duration-300"
                   >
-                    <span className="flex items-center gap-3 text-gray-700 group-hover:text-white transition-colors">
-                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-semibold group-hover:bg-white/20 group-hover:text-white transition-colors">
+                    <span className="flex items-center gap-2 sm:gap-3 text-gray-700 group-hover:text-white transition-colors">
+                      <span className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-blue-50 text-blue-600 text-sm sm:text-base font-semibold group-hover:bg-white/20 group-hover:text-white transition-colors">
                         {String.fromCharCode(65 + index)}
                       </span>
-                      {option}
+                      <span className="text-sm sm:text-base">{option}</span>
                     </span>
                   </button>
                 ))}
               </div>
             ) : (
-              <form onSubmit={handleIntegerAnswer} className="space-y-4">
+              <form onSubmit={handleIntegerAnswer} className="space-y-3 sm:space-y-4">
                 <input
                   type="number"
                   value={integerAnswer}
                   onChange={(e) => setIntegerAnswer(e.target.value)}
-                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-300 text-lg"
+                  className="w-full p-3 sm:p-4 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-300 text-sm sm:text-base md:text-lg"
                   placeholder="Enter your numerical answer"
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-opacity duration-300 text-lg font-semibold"
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 sm:py-3 md:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl hover:opacity-90 transition-opacity duration-300 text-sm sm:text-base md:text-lg font-semibold"
                 >
                   Submit Answer
                 </button>
@@ -246,9 +254,10 @@ function App() {
             )}
           </div>
 
-          <div className="flex items-center gap-2 text-sm font-medium">
+          {/* Score Display */}
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-medium">
             <span className="text-gray-500">Current Score:</span>
-            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full">
+            <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-700 rounded-full">
               {quizState.score}/{quizState.currentQuestionIndex}
             </span>
           </div>
