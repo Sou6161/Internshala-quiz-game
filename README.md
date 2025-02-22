@@ -48,7 +48,7 @@ Visit the live application: [Interactive Quiz](https://internshala-quiz-game.ver
 
 2. Navigate to the project directory:
    ```bash
-   cd quiz-platform
+   cd internshala quiz game
    ```
 
 3. Install dependencies:
