@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAttempts } from '../Utils/db';
 import { History } from 'lucide-react';
 
-export const QuizHistory = () => {
+const QuizHistory = () => {
   const [attempts, setAttempts] = useState([]);
 
   useEffect(() => {
@@ -46,3 +46,5 @@ export const QuizHistory = () => {
     </div>
   );
 };
+
+export default QuizHistory

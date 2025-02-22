@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timer as TimerIcon } from 'lucide-react';
 
-export const Timer = ({ timeRemaining, totalTime }) => {
+const Timer = ({ timeRemaining, totalTime }) => {
   const percentage = (timeRemaining / totalTime) * 100;
   const isWarning = timeRemaining <= 10;
 
@@ -22,3 +22,5 @@ export const Timer = ({ timeRemaining, totalTime }) => {
     </div>
   );
 };
+
+export default Timer;

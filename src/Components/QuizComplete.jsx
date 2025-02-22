@@ -2,7 +2,7 @@ import React from 'react';
 import { Trophy, RotateCcw, Save } from 'lucide-react';
 import { saveAttempt } from '../Utils/db';
 
-export const QuizComplete = ({ score, totalQuestions, onRestart, timePerQuestion }) => {
+const QuizComplete = ({ score, totalQuestions, onRestart, timePerQuestion }) => {
   const percentage = (score / totalQuestions) * 100;
   
   const handleSave = async () => {
@@ -47,3 +47,4 @@ export const QuizComplete = ({ score, totalQuestions, onRestart, timePerQuestion
     </div>
   );
 };
+export default QuizComplete;

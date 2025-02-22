@@ -23,3 +23,5 @@ export const TimeUpModal = ({ onRestart }) => {
     </div>
   );
 };
+
+export default TimeUpModal;
