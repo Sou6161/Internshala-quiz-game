@@ -47,4 +47,5 @@ const QuizComplete = ({ score, totalQuestions, onRestart, timePerQuestion }) => 
     </div>
   );
 };
+
 export default QuizComplete;
