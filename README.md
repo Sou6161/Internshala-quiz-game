@@ -1,6 +1,6 @@
 # Interactive Quiz Application
 
-A modern, interactive quiz application built with React and TypeScript, featuring multiple-choice and integer-type questions with time constraints.
+A modern, interactive quiz application built with React and featuring multiple-choice and integer-type questions with time constraints.
 
 ## 🌐 Live Demo
 
