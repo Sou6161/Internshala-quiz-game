@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Brain, Timer as TimerIcon } from 'lucide-react';
-import { questions } from './data/questions';
+import { questions } from '././Data/questions';
 import { Timer } from './components/Timer';
 import { QuizComplete } from './components/QuizComplete';
 import { QuizHistory } from './components/QuizHistory';
