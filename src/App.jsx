@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Brain, Timer as TimerIcon } from 'lucide-react';
 import { questions } from '././Data/questions';
-import { Timer } from './Components/Timer';
-import { QuizComplete } from './Components/QuizComplete';
-import { QuizHistory } from './Components/QuizHistory';
-import { TimeUpModal } from './Components/TimeUpModal';
+import Timer from './Components/Timer';
+import QuizComplete from './Components/QuizComplete';
+import QuizHistory from './Components/QuizHistory';
+import TimeUpModal from './Components/TimeUpModal';
 
 const TIME_PER_QUESTION = 30;
 const TOTAL_QUIZ_TIME = 30 * 60;
